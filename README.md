@@ -1,7 +1,6 @@
 # Portfolio
-Languages: Python, R, SQL
-Frameworks: Django
-Cloud Solutions: AWS
-Data Science: Pandas
-Machine Learning: Scikit-learn, Keras, TensorFlow
-Deep Learning: Neuro-Network
+</li>Languages: Python, R, SQL</li>
+</li>Frameworks: Django</li>
+</li>Cloud Solutions: AWS</li>
+</li>Machine Learning: Scikit-learn, Keras, TensorFlow</li>
+</li>Deep Learning: Neuro-Network</li>
