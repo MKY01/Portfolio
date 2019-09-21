@@ -1,2 +1,2 @@
 # Python
-This is a portfolio of my work using the Python programming language
+These are examples of my work using the Python programming language.

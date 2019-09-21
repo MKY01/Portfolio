@@ -1,2 +1,2 @@
 # R
-This is a portfolio of my work using the R programming language
+These are examples of my work using the R programming language
