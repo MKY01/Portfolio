@@ -1,0 +1,5 @@
+XSym
+0106
+5c45a0550f7a99f7eb7fed42639dc86f
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/cp500.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

@@ -1,0 +1,5 @@
+XSym
+0101
+f93e1ff73c0f27676909fe8f52dcf212
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/codecs.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

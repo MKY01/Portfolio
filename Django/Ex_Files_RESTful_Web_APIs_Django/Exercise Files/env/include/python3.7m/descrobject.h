@@ -1,0 +1,5 @@
+XSym
+0106
+7aeaf668c10eb9fb5ea5810cfe096ac9
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/descrobject.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

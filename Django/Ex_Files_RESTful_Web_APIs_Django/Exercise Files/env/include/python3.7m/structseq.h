@@ -1,0 +1,5 @@
+XSym
+0104
+d99f556b88398f661a8ce95df2c5b36c
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/structseq.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

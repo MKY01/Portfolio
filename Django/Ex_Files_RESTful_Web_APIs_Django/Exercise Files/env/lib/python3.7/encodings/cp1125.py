@@ -1,0 +1,5 @@
+XSym
+0107
+7f31df6cccf8d7e550e6cff485a0f851
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/cp1125.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

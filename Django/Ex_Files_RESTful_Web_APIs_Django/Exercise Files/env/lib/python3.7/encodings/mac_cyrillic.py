@@ -1,0 +1,5 @@
+XSym
+0113
+fcac0cb19e6b10cb87ab70ebbe93073c
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/mac_cyrillic.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

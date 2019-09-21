@@ -1,0 +1,5 @@
+XSym
+0115
+3a86079d442b8304dd35a8679115772e
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/shift_jis_2004.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

@@ -1,0 +1,5 @@
+XSym
+0108
+2e863a5cb3238d67b389ee32780c3be6
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/cp65001.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

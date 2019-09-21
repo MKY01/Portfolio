@@ -1,0 +1,5 @@
+XSym
+0117
+01fc0a9b80002694bf037baa73438763
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/unicode_internal.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

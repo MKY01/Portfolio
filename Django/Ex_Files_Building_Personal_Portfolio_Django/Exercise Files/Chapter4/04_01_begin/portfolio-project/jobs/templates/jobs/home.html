@@ -1,0 +1,6 @@
+<h1>Let's list all the jobs</h1>
+
+{% for job in jobs.all %}
+{{ job.summary }} - {{ job.image.url }}
+<br>
+{% endfor %}

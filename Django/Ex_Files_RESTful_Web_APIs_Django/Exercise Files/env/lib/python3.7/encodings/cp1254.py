@@ -1,0 +1,5 @@
+XSym
+0107
+0b947639bdddfaacb48d713b8b75291d
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/cp1254.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

@@ -1,0 +1,5 @@
+XSym
+0106
+3caaddad73f1ffbe44754015332e2656
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pymacconfig.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

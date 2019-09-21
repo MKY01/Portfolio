@@ -1,0 +1,5 @@
+XSym
+0103
+f1accf7ffe88e4be8e8dff75c03a4671
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pyatomic.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

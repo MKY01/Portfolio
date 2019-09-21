@@ -1,0 +1,5 @@
+XSym
+0106
+0ac96ad060a26d6f3c0d2e68c7845bc1
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/cp852.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

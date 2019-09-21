@@ -1,0 +1,5 @@
+XSym
+0123
+4a4c71b15697d7a3dc9f73ced5a0ebef
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/config-3.7m-darwin/python-config.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

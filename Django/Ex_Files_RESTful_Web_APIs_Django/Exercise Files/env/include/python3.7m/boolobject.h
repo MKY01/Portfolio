@@ -1,0 +1,5 @@
+XSym
+0105
+122555ed9d7b0d5e12b0635ded5993c3
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/boolobject.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

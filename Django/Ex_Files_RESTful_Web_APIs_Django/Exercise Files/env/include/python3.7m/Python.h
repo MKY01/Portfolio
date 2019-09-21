@@ -1,0 +1,5 @@
+XSym
+0101
+798cb20f197a356349d3ca6d32ef9395
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/Python.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

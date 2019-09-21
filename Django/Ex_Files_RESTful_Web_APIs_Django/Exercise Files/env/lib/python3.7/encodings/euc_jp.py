@@ -1,0 +1,5 @@
+XSym
+0107
+87cfb0a0e6ae413255090ffcfa25e634
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/euc_jp.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

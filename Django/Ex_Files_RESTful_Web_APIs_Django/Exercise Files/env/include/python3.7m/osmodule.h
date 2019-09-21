@@ -1,0 +1,5 @@
+XSym
+0103
+8d2986d199b19641e382768bb3a4e4ff
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/osmodule.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

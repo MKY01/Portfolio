@@ -1,0 +1,5 @@
+XSym
+0110
+ae24451e77a03b0fa6677434fdc654a4
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/mac_roman.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

@@ -1,0 +1,5 @@
+XSym
+0106
+b91bfd063167c346f08f0da0bf495532
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/metagrammar.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

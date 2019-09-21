@@ -1,0 +1,5 @@
+XSym
+0110
+a48b1d36467c015af005b18c297b201b
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/namespaceobject.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

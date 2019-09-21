@@ -1,0 +1,5 @@
+XSym
+0110
+a41906c47a7a652fbd336174878ef5f9
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/iso8859_8.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

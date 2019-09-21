@@ -1,0 +1,5 @@
+XSym
+0102
+7c5778d3be64f463dd05b14b1e6b5251
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pymacro.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

@@ -1,0 +1,5 @@
+XSym
+0107
+5d966e4c32fa9ea6e798ec35bc52a79b
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/moduleobject.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

@@ -1,0 +1,5 @@
+XSym
+0112
+28c52033e78d8febb76909012cb23820
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/internal/warnings.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

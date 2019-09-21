@@ -1,0 +1,5 @@
+XSym
+0113
+70689efda98cf74dc6df38c34dd08c06
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/mac_croatian.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

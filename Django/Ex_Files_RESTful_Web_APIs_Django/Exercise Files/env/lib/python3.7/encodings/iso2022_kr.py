@@ -1,0 +1,5 @@
+XSym
+0111
+ad92cfeb38506a4ae370d0cff83eccb1
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/iso2022_kr.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

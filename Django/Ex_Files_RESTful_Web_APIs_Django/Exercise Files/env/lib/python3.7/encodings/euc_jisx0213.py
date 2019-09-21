@@ -1,0 +1,5 @@
+XSym
+0113
+96e069f7f83ef1c7591b08d3a6d61a1a
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/euc_jisx0213.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

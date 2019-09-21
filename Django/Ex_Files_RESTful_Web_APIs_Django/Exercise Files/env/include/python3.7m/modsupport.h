@@ -1,0 +1,5 @@
+XSym
+0105
+7f6b8e76a893f79c03a54fdbd6341fb3
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/modsupport.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

@@ -1,0 +1,5 @@
+XSym
+0113
+6329ac407b5ac9846f83bac0b0da669b
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/iso2022_jp_2.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

@@ -1,0 +1,5 @@
+XSym
+0105
+80cf52a920d3c0c0fed17854cf5a6b6d
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/patchlevel.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

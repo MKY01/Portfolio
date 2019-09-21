@@ -1,0 +1,5 @@
+XSym
+0108
+7e2e65964e8acb1bd57c8eb4c3a90946
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/tis_620.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

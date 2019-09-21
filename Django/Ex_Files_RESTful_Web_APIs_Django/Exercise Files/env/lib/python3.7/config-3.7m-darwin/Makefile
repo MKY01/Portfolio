@@ -1,0 +1,5 @@
+XSym
+0115
+a30cdb3b62df402b437a772f6c559c07
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/config-3.7m-darwin/Makefile
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

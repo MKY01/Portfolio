@@ -1,0 +1,5 @@
+XSym
+0107
+0f62c9e53df2a8c774a2719ad043c15d
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/koi8_u.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

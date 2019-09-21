@@ -1,0 +1,5 @@
+XSym
+0104
+4408e364cf4b56d53242e0e48dde8cc6
+/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/py_curses.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
