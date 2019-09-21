@@ -1,0 +1,316 @@
+---
+title: "BDA Coursework 3"
+author: "Man Kit Yip"
+date: "03/12/2017"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+#1. Random Forest (1%) [Textbook 8.4.7]
+##In the lab, we applied random forests to the Boston data using mtry=6 and using ntree=25 and ntree=500.
+
+library(MASS)
+set.seed(1)
+train = sample(1:nrow(Boston), nrow(Boston)/2)
+tree.boston=tree(medv~.,Boston,subset=train)
+summary(tree.boston)
+plot(tree.boston)
+text(tree.boston,pretty=0)
+cv.boston=cv.tree(tree.boston)
+plot(cv.boston$size,cv.boston$dev,type='b')
+prune.boston=prune.tree(tree.boston,best=5)
+plot(prune.boston)
+text(prune.boston,pretty=0)
+yhat=predict(tree.boston,newdata=Boston[-train,])
+boston.test=Boston[-train,"medv"]
+plot(yhat,boston.test)
+abline(0,1)
+mean((yhat-boston.test)^2)
+
+library(randomForest)
+set.seed(1)
+bag.boston=randomForest(medv~.,data=Boston,subset=train,mtry=13,importance=TRUE)
+bag.boston
+yhat.bag = predict(bag.boston,newdata=Boston[-train,])
+plot(yhat.bag, boston.test)
+abline(0,1)
+mean((yhat.bag-boston.test)^2)
+bag.boston=randomForest(medv~.,data=Boston,subset=train,mtry=13,ntree=25)
+yhat.bag = predict(bag.boston,newdata=Boston[-train,])
+mean((yhat.bag-boston.test)^2)
+set.seed(1)
+rf.boston=randomForest(medv~.,data=Boston,subset=train,mtry=6,importance=TRUE)
+yhat.rf = predict(rf.boston,newdata=Boston[-train,])
+mean((yhat.rf-boston.test)^2)
+importance(rf.boston)
+varImpPlot(rf.boston)
+```
+
+```{r}
+##Create a plot displaying the test error resulting from random forests on this data set for a more comprehensive range of values for mtry and ntree. You can model your plot after Figure 8.10.
+library(MASS)
+library(tree)
+library(randomForest)
+set.seed(0)
+train <- sample(1:nrow(Boston),nrow(Boston)*0.5)
+x.train = Boston[train, -14]
+x.test = Boston[-train, -14]
+y.train = Boston[train, 14]
+y.test = Boston[-train, 14]
+
+rfmodel1 <- randomForest(x.train,y.train, x.test, y.test, mtry = ncol(x.train), ntree = 500)
+rfmodel2 <- randomForest(x.train,y.train, x.test, y.test, mtry = sqrt(ncol(x.train)) , ntree = 500)
+rfmodel3 <- randomForest(x.train,y.train, x.test, y.test, mtry = (ncol(x.train)/2), ntree = 500)
+rfmodel4 <- randomForest(x.train,y.train, x.test, y.test, mtry = (ncol(x.train)/3), ntree = 500)
+rfmodel5 <- randomForest(x.train,y.train, x.test, y.test, mtry = (ncol(x.train)/4), ntree = 500)
+
+plot(1:500,rfmodel1$test$mse, col = "green", type = "l", xlab = "Number of trees", ylab = "Test MSE", ylim = c(10,70))
+lines(1:500, rfmodel2$test$mse, col = "red", type = "l")
+lines(1:500, rfmodel3$test$mse, col = "blue", type = "l")
+lines(1:500, rfmodel4$test$mse, col = "purple", type = "l")
+lines(1:500, rfmodel5$test$mse, col = "black", type = "l")
+legend("right", c("m = p", "m = sqrt(p)", "m = p/2", "m = p/3", "m = p/4"), col=c("green","red","blue","purple","black"), cex = 1, lty = 1)
+```
+
+```{r}
+##Describe the results obtained.
+###The test shows that a single tree MSE is very high (up to 70 for model2)! It decreases as you add more trees and it becomes stabilised around 100 trees and no further improvement is observed. The different models gives different test MSE, when m = p/2 it gives the lowest MSE (around 11), and when m = p/4 it gives the highest MSE(around 13).
+```
+
+
+```{r}
+#2. Regression Tree (2%) [Textbook 8.4.8]
+##In the lab, a classification tree was applied to the Carseats data set after converting Sales into a qualitative response variable. Now we will seek to predict Sales using regression trees and related approaches, treating the response as a quantitative variable.
+library(tree)
+library(ISLR)
+attach(Carseats)
+High=ifelse(Sales<=8,"No","Yes")
+Carseats=data.frame(Carseats,High)
+tree.carseats=tree(High~.-Sales,Carseats)
+summary(tree.carseats)
+plot(tree.carseats)
+text(tree.carseats,pretty=0)
+tree.carseats
+set.seed(2)
+train=sample(1:nrow(Carseats), 200)
+Carseats.test=Carseats[-train,]
+High.test=High[-train]
+tree.carseats=tree(High~.-Sales,Carseats,subset=train)
+tree.pred=predict(tree.carseats,Carseats.test,type="class")
+table(tree.pred,High.test)
+(86+57)/200
+set.seed(3)
+cv.carseats=cv.tree(tree.carseats,FUN=prune.misclass)
+names(cv.carseats)
+cv.carseats
+par(mfrow=c(1,2))
+plot(cv.carseats$size,cv.carseats$dev,type="b")
+plot(cv.carseats$k,cv.carseats$dev,type="b")
+prune.carseats=prune.misclass(tree.carseats,best=9)
+plot(prune.carseats)
+text(prune.carseats,pretty=0)
+tree.pred=predict(prune.carseats,Carseats.test,type="class")
+table(tree.pred,High.test)
+(94+60)/200
+prune.carseats=prune.misclass(tree.carseats,best=15)
+plot(prune.carseats)
+text(prune.carseats,pretty=0)
+tree.pred=predict(prune.carseats,Carseats.test,type="class")
+table(tree.pred,High.test)
+(86+62)/200
+```
+
+```{r}
+##(a) Split the data set into a training set and a test set.
+library(ISLR)
+attach(Carseats)
+set.seed(0)
+train <- sample(1:nrow(Carseats), nrow(Carseats)*0.5)
+Carseats.train <- Carseats[train, ]
+Carseats.test <- Carseats[-train, ]
+```
+
+```{r}
+##(b) Fit a regression tree to the training set. Plot the tree, and interpret the results. What test error rate do you obtain?
+library(tree)
+Carseats.tree <- tree(Sales~., Carseats.train)
+summary(Carseats.tree)
+plot(Carseats.tree)
+text(Carseats.tree, pretty = 0)
+yhat <- predict(Carseats.tree, Carseats.test)
+tree.mse <-mean((yhat - Carseats.test$Sales)^2)
+tree.mse
+###The test MSE for the tree is about 2.80.
+```
+
+```{r}
+##(c) Use cross-validation in order to determine the optimal level of tree complexity. Does pruning the tree improve the test error rate?
+set.seed(0)
+Carseats.cv <-cv.tree(Carseats.tree)
+plot(Carseats.cv$size, Carseats.cv$dev, xlab = "Size of tree",ylab = "Deviance", type = "o" )
+###Using cross-validation, I have determined that a tree of size 4 gives the lowest deviance, and so is selected as the optimal size for pruning. I will prune the tree to obtain the 4 nodes tree (down from the original 10 nodes).
+
+Carseats.prune <- prune.tree(Carseats.tree, best = 4)
+plot(Carseats.prune)
+text(Carseats.prune, pretty = 0)
+yhat2 <- predict(Carseats.prune, Carseats.test)
+tree.mse2 <- mean((yhat2 - Carseats.test$Sales)^2)
+tree.mse2
+
+###As you can see, pruning the tree increases the test MSE to about 3.42.
+```
+
+```{r}
+##(d) Use the bagging approach in order to analyze this data. What test error rate do you obtain? Use the importance() function to determine which variables are most important.
+set.seed(0)
+Carseats.bag <- randomForest(Sales~., Carseats.train, mtry = 13, importance = TRUE)
+yhat.bag <- predict(Carseats.bag, Carseats.test)
+test.mse <- mean((yhat.bag - Carseats.test$Sales)^2)
+test.mse
+### As you can see, bagging approach reduces the test MSE to about 2.19.
+
+importance(Carseats.bag)
+###I can conclude that the three most important variables i.e. predictors of "Sale" are: "high", "High1" and "High2" as chosen by the bagging model.
+```
+
+```{r}
+##(e) Use random forests to analyze this data. What test error rate do you obtain? Use the importance() function to determine which variables are most important. Describe the effect of m, the number of variables considered at each split, on the error rate obtained.
+set.seed(0)
+rf.carseats <-randomForest(Sales~., Carseats.train, mtry = 7, importance = TRUE)
+yhat.rf2 <-predict(rf.carseats, Carseats.test)
+test.mse2<- mean((yhat.rf2 - Carseats.test$Sales)^2)
+test.mse2
+importance(rf.carseats)
+###Using random forests, with m = p/2, the test MSE is about 2.27 which is an increase compared with the bagging approach. I can conclude that the three most important variables i.e. predictors of "Sale" are: "high", "High.1" and "High.2", which is the same conclusion as before.
+
+###I have tested different m, and I have found this changes the test MSE from between 3.45 (mtry = 1) to 2.19 (mtry = 13). In general increasing the number of variables considered at each split seems to lower the error rate obtained.
+```
+
+
+```{r}
+#3. Classification Tree (2%) [Textbook 8.4.9]
+##This problem involves the OJ data set which is part of the ISLR package.
+library(ISLR)
+attach(OJ)
+```
+
+```{r}
+##(a) Create a training set containing a random sample of 800 observations, and a test set containing the remaining observations.
+set.seed(0)
+train <-sample(1:nrow(OJ), 800)
+oj.train <- OJ[train,]
+oj.test <- OJ[-train,]
+```
+
+```{r}
+##(b) Fit a tree to the training data, with Purchase as the response and the other variables except for Buy as predictors*. Use the summary() function to produce summary statistics about the tree, and describe the results obtained. What is the training error rate? How many terminal nodes does the tree have?
+
+oj.tree <- tree(Purchase ~., data = oj.train)
+summary(oj.tree)
+
+###The training error rate is the misclassification error rate which is at 15.75%. There are a total of 8 terminal nodes.
+
+###N.B. the "Buy" variable is not found in the dataset.
+```
+
+```{r}
+##(c) Type in the name of the tree object in order to get a detailed text output. Pick one of the terminal nodes, and interpret the information displayed.
+
+oj.tree
+
+###The terminal nodes are marked by an asterisk below.I picked the node labelled 8, which is a 'bottom level' terminal node of branch MM. The splitting variable at this node is "LoyalCH", and the criteron is < 0.0506575, the number of observations is 58. It shows no zero deviance for the branch MM. The overall predication is that 0% of the observations taking CH value and the remaining 100% taking MM value.
+```
+
+```{r}
+##(d) Create a plot of the tree, and interpret the results.
+
+plot(oj.tree)
+text(oj.tree, pretty = 0)
+```
+
+```{r}
+##(e) Predict the response on the test data, and produce a confusion matrix comparing the test labels to the predicted test labels. What is the test error rate?
+
+oj.pred <- predict(oj.tree, oj.test, type = "class")
+table(oj.pred, oj.test$Purchase)
+(20+27)/(142+20+27+81) *100
+
+###I can conclude the test error rate is about 17.4%.
+```
+
+```{r}
+##(f) Apply the cv.tree() function to the training set in order to determine the optimal tree size.
+
+oj.cv <- cv.tree(oj.tree, FUN = prune.misclass)
+oj.cv
+
+### This has returned a number of possible sizes of node, it can be seen visually in the next part.
+```
+
+```{r}
+##(g) Produce a plot with tree size on the x-axis and cross-validated classification error rate on the y-axis.
+
+treeplot<- plot(oj.cv$size, oj.cv$dev, type = "o", xlab = "Tree size", ylab = "CV Deviance")
+```
+
+```{r}
+##(h) Which tree size corresponds to the lowest cross-validated classification error rate?
+
+which.min(treeplot)
+
+###It would seem that a Tree size of 7 and/ or 8 would give the lowest cross-validation error rate. However as the original unpruned tree had 8 nodes, I will use 7 nodes.
+```
+
+```{r}
+##(i) Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.
+
+library(tree)
+oj.pruned <- prune.misclass(oj.tree, best = 7)
+plot(oj.pruned)
+text(oj.pruned, pretty = 0)
+
+###N.B. I did not choose to prune it to 5 nodes as 7 nodes appears to be the 'best' with the lowest CV deviance.
+```
+
+```{r}
+##(j) Compare the training error rates between the pruned and unpruned trees. Which is higher?
+
+summary(oj.pruned)
+summary(oj.tree)
+
+###The misclassification error rate for 7 nodes vs 8 nodes is the same at around 15.58%, although the former has a marginally higher Residual mean deviance. So it would seem that pruning did not reduce misclassification.
+```
+
+```{r}
+##(k) Compare the test error rates between the pruned and unpruned trees. Which is higher?
+
+pred.unpruned <- predict(oj.tree, oj.test, type = "class")
+misclass.unpruned = sum(oj.test$Purchase != pred.unpruned)
+misclass.unpruned/length(pred.unpruned)
+
+pred.pruned <- predict(oj.pruned, oj.test, type = "class")
+misclass.pruned = sum(oj.test$Purchase != pred.pruned)
+misclass.pruned/length(pred.pruned)
+
+###It would appear that the test error rates for both pruned and unpruned trees are the same at around 17.41%.
+```
+
+```{r}
+#References & Bibliography
+
+##plotmath function | R Documentation [WWW Document], n.d. URL https://www.rdocumentation.org/packages/grDevices/versions/3.4.3/topics/plotmath (accessed 11.12.17).
+
+##Gareth, J., 2017. An introduction to Statistical learning. 8th ed. New York: Springer.
+
+##James, G., 2014. Chapter 8 Lab: Decision Trees [WWW Document]. An Introduction to Statistical Learning with Applications in R. URL http://www-bcf.usc.edu/~gareth/ISL/Chapter%208%20Lab.txt (accessed 4.12.17).
+
+##Han, T. 2017. Big Data Analytics using R. [Lectures to MSc Data Science]. Birkbeck college, University of London, Nov 17 - Dec 17.
+
+##N/A., 2017. ISLR. URL https://rpubs.com/. (accessed 3.12.17).
+
+#End of Document
+```
+
