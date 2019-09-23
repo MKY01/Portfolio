@@ -1,5 +1,0 @@
-XSym
-0102
-62d4d2afb8104a454e10c8d9ba2bbbaf
-/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pyctype.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

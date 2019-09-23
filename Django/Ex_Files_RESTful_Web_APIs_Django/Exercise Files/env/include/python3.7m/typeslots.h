@@ -1,5 +1,0 @@
-XSym
-0104
-ab06185ad0dde209733f7b192a951441
-/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/typeslots.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

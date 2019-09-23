@@ -1,5 +1,0 @@
-XSym
-0103
-660be1c4d6a85426eff6dc5a2f52bf0e
-/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m/symtable.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
