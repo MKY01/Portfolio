@@ -1,25 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import javascriptLogo from './JavaScript-logo.png';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to Kodflix!
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <img src={javascriptLogo} alt='Javascript logo'/>
+        <h1>Welcome to Kodflix!</h1>
       </div>
     );
   }
