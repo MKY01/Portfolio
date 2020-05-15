@@ -1,5 +1,5 @@
 ---
-title: "BDA Coursework 1"
+title: "BDA 1"
 author: "Man Kit Yip"
 date: "22/10/2017"
 output:
