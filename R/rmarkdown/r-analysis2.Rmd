@@ -1,0 +1,327 @@
+---
+title: "BDA 2"
+author: "Man Kit Yip"
+date: "02/11/2017"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+#1. Logistic regression (1%) [Textbook 4.10]
+#this question should be answered using the Weekly data set, which is part of the ISLR package. This data is similar in nature to the Smarket data from this chapter’s lab, except that it contains 1, 089 weekly returns for 21 years, from the beginning of 1990 to the end of 2010.
+
+```{r}
+library(ISLR)
+Weekly 
+```
+
+###(a) Produce some numerical and graphical summaries of the Weekly data. Do there appear to be any patterns?
+```{r}
+summary(Weekly)
+correlation <-cor(Weekly [ -9])
+correlation
+library(corrplot)
+corrplot(correlation)
+###From the numerical and graphical summaries, it appears that the Volume and year are correlated.
+```
+
+
+###(b) Use the full data set to perform a logistic regression with Direction as the response and the five lag variables plus Volume as predictors. Use the summary function to print the results. Do any of the predictors appear to be statistically significant? If so, which ones?
+```{r}
+pairs(Weekly, pch = '+')
+fit_weekly.logit <- glm(Direction~., data = Weekly [ ,c(2:7, 9)], family = binomial)
+summary(fit_weekly.logit)
+###As you can see, Lag2 is the only predictor which is statistically significant* at Pr (>|z|)0.0296. However from the pairwise plot, 'Year' and 'Volume' appears to be the only pair which shows positive correlations. 
+```
+
+###(c) Compute the confusion matrix and overall fraction of correct predictions. Explain what the confusion matrix is telling you about the types of mistakes made by logistic regression.
+```{r}
+prob_weekly.logit <- predict(fit_weekly.logit, Weekly, type = "response")
+pred_weekly.logit <-ifelse(prob_weekly.logit > 0.5, "Up", "Down")
+table(pred_weekly.logit, Weekly$Direction)
+
+accuracy_weekly = ((54+557)/nrow(Weekly))*100
+print(accuracy_weekly)
+
+###The confusion matrix is showing you the the number of times it predicts "Down" or "Up", against the actual number of times it was "Down" or "up" that week. 'accuracy_weekly' shows that the logistic regression was accurate (on average) 56.1% of the time, and therefore wrong (on average) 43.9% of the time. 
+```
+
+
+#2. Logistic regression (1%) [Textbook 4.11]
+#In this problem, you will develop a model to predict whether a given car gets high or low gas mileage based on the Auto data set.
+```{r}
+library(ISLR)
+Auto
+```
+
+###(a) Create a binary variable, mpg01, that contains a 1 if mpg contains a value above its median, and a 0 if mpg contains a value below its median. You can compute the median using the median() function. Note you may find it helpful to use the data.frame() function to create a single data set containing both mpg01 and the other Auto variables.
+```{r}
+mpg01 <- ifelse(Auto$mpg > median(Auto$mpg), 1, 0)
+Autodataset <- data.frame(Auto, mpg01)
+```
+
+###(b) Explore the data graphically in order to investigate the association between mpg01 and the other features. Which of the other features seem most likely to be useful in predicting mpg01? Scatterplots and boxplots may be useful tools to answer this question. Describe your findings.
+```{r}
+pairs(Autodataset)
+scatter.smooth(Autodataset$mpg, Autodataset$displacement)
+scatter.smooth(Autodataset$mpg, Autodataset$horsepower)
+scatter.smooth(Autodataset$mpg, Autodataset$weight)
+scatter.smooth(Autodataset$mpg, Autodataset$acceleration)
+boxplot(Autodataset$mpg, Autodataset$displacement)
+boxplot(Autodataset$mpg, Autodataset$horsepower)
+boxplot(Autodataset$mpg, Autodataset$weight)
+boxplot(Autodataset$mpg, Autodataset$acceleration)
+
+###From the pairwise plot and further examination of the scatterplot, it appears that: displacement, horsepower, weight is negatively correlated with mpg, while acceleration appears to be positively correlated with mpg.
+```
+
+
+#3. Validation set approach (1%) [Textbook 5.5]
+#In Chapter 4, we used logistic regression to predict the probability of default using income and balance on the Default data set. We will now estimate the test error of this logistic regression model using the validation set approach. Do not forget to set a random seed before beginning your analysis.
+
+```{r}
+library(ISLR)
+data(Default)
+```
+
+
+###(a) Fit a logistic regression model that uses income and balance to predict default.
+```{r}
+set.seed(0)
+fit_default <-glm(default ~ income + balance, data=Default, family=binomial)
+summary(fit_default)
+```
+
+###(b) Using the validation set approach; estimate the test error of this model. In order to do this, you must perform the following steps:
+
+###i. Split the sample set into a training set and a validation set.
+```{r}
+set.seed(0)
+train <- sample(nrow(Default), nrow(Default)*0.5)
+```
+
+###ii. Fit a multiple logistic regression model using only the training observations.
+```{r}
+fit_default <-glm(default ~ income + balance, data= Default, family=binomial, subset=train)
+fit_default <- predict(fit_default, Default[-train, ], type ="response")
+```
+
+###iii. Obtain a prediction of default status for each individual in the validation set by computing the posterior probability of default for that individual, and classifying the individual to the default category if the posterior probability is greater than 0.5.
+```{r}
+pred_default <- ifelse (fit_default > 0.5, "Yes", "No")
+table(pred_default, Default[-train, ]$default)
+mean(Default[-train,]$default !=pred_default)
+```
+
+###iv. Compute the validation set error, which is the fraction of the observations in the validation set that are misclassified.
+```{r}
+accuracy_default = ((27+107)/(27+107+4810+56))*100
+print(accuracy_default)
+
+###This shows a validation set error of 2.68%.
+```
+
+###(c) Repeat the process in (b) three times, using three different splits of the observations into a training set and a validation set. Comment on the results obtained.
+```{r}
+set.seed(1)
+train <- sample(nrow(Default), nrow(Default)*0.5)
+fit_default<-glm(default ~ income + balance, data=Default, family=binomial, subset=train)
+fit_default <- predict(fit_default, Default[-train, ], type ="response")
+pred_default <- ifelse (fit_default> 0.5, "Yes", "No")
+mean(Default[-train,]$default !=pred_default)
+
+set.seed(2)
+train <- sample(nrow(Default), nrow(Default)*0.5)
+fit_default<-glm(default ~ income + balance, data=Default, family=binomial, subset=train)
+fit_default <- predict(fit_default, Default[-train, ], type ="response")
+pred_default <- ifelse (fit_default> 0.5, "Yes", "No")
+mean(Default[-train,]$default !=pred_default)
+
+
+set.seed(3)
+train <- sample(nrow(Default), nrow(Default)*0.5)
+fit_default<-glm(default ~ income + balance, data=Default, family=binomial, subset=train)
+fit_default <- predict(fit_default, Default[-train, ], type ="response")
+pred_default <- ifelse (fit_default> 0.5, "Yes", "No")
+mean(Default[-train,]$default !=pred_default)
+
+###The test error is about (0.027 or 2.7%), so the variance is low.
+```
+
+###(d) Now consider a logistic regression model that predicts the probability of default using income, balance, and a dummy variable for student. Estimate the test error for this model using the validation set approach. Comment on whether or not including a dummy variable for student leads to a reduction in the test error rate.
+```{r}
+set.seed(0)
+train <- sample(nrow(Default), nrow(Default)*0.5)
+fit_student <-glm(default ~ income + balance + student, data=Default, family=binomial, subset=train)
+fit_student <- predict(fit_student, Default[-train, ], type ="response")
+pred_student <- ifelse (fit_student > 0.5, "Yes", "No")
+mean(Default[-train,]$default !=pred_student)
+
+###The test error only marginally decreased with the student variable included 2.7% --> 2.66%, and is not likely to be statistically significant.
+```
+
+
+#4. LOOCV and Loop (1%) [Textbook 5.7]
+#In Sections 5.3.2 and 5.3.3, we saw that the cv.glm() function can be used in order to compute the LOOCV test error estimate. Alternatively, one could compute those quantities using just the glm() and predict.glm() functions, and a for loop. You will now take this approach in order to compute the LOOCV error for a simple logistic regression model on the Weekly data set. Recall that in the context of classification problems, the LOOCV error is given in (5.4).
+
+###(a) Fit a logistic regression model that predicts Direction using Lag1 and Lag2.
+```{r}
+library(ISLR)
+data("Weekly")
+set.seed(0)
+fit_weekly <- glm(Direction ~ Lag1 + Lag2, data=Weekly, family = binomial)
+summary(fit_weekly)
+```
+
+###(b) Fit a logistic regression model that predicts Direction using Lag1 and Lag2 using all but the first observation.
+```{r}
+set.seed(0)
+fit_weekly2 <- glm(Direction ~ Lag1 + Lag2, data = Weekly, family = binomial, subset=2:nrow(Weekly))
+summary(fit_weekly2)
+```
+
+###(c) Use the model from (b) to predict the direction of the first observation. You can do this by predicting that the first observation will go up if P(Direction="Up"|Lag1, Lag2) > 0.5. Was this observation correctly classified?
+```{r}
+ifelse(predict(fit_weekly2, Weekly [1, ], type="response") >0.5, "Up", "Down")
+Weekly[1, ]$Direction
+
+###The prediction for week 1 was "up", but the actual data shows "Down", so it is wrong.
+```
+
+###(d) Write a for loop from i = 1 to i = n, where n is the number of observations in the data set, that performs each of the following steps:
+
+###i. Fit a logistic regression model using all but the ith observation to predict Direction using Lag1 and Lag2.
+```{r}
+set.seed(0)
+loocv.error <-rep(0,nrow(Weekly))
+for (i in 1:nrow(Weekly)) {
+  fit_weekly3 <- glm(Direction ~ Lag1 + Lag2, data =Weekly [-i, ], family =binomial)
+  pred_weekly3 <- ifelse(predict(fit_weekly3, Weekly[1, ], type="response") >0.5, "Up", "Down")
+  loocv.error[i] <- ifelse(Weekly[i, ]$Direction==pred_weekly3, 0, 1)
+}
+loocv.error
+```
+
+###ii. Compute the posterior probability of the market moving up for the ith observation.
+```{r}
+###See the 'chunk' of r codes above... "Up".
+```
+
+###iii. Use the posterior probability for the ith observation in order to predict whether or not the market moves up.
+```{r}
+###See the 'chunk' of r codes above...">0.5"
+```
+
+###iv. Determine whether or not an error was made in predicting the direction for the ith observation. If an error was made, then indicate this as a 1, and otherwise indicate it as a 0.
+```{r}
+str(loocv.error)
+sum(loocv.error)
+```
+
+###(e) Take the average of the n numbers obtained in (d)iv in order to obtain the LOOCV estimate for the test error. Comment on the results.
+```{r}
+mean(loocv.error)
+###The estimate for the test error with LOOCV is 44.44%. So it is correct 55.56% of the time.
+```
+
+
+#5. LOOCV (1%) [Textbook 5.8]
+#We will now perform cross-validation on a simulated data set.
+###(a) Generate a simulated data set as follows:
+###> set.seed(1)
+###> x=rnorm(100)
+###> y=x-2*x^2+ rnorm(100)
+###In this data set, what is n and what is p? Write out the model used to generate the data in equation form.
+```{r}
+set.seed(1)
+x = rnorm(100)
+y = x-2*x^2 + rnorm(100)
+### n is 100 and p is 2.
+```
+
+###(b) Create a scatterplot of 𝑋 against 𝑌. Comment on what you find.
+```{r}
+scatter.smooth(x,y)
+
+###There is a quadratic relationship between x and y, x from about -2 to 2, and y from about -12 to -1. 
+```
+
+###(c) Set a random seed, and then compute the LOOCV errors that result from fitting the following four models using least squares:
+###i. 𝑌=𝛽0+𝛽1𝑋+𝜀
+###ii. 𝑌=𝛽0+𝛽1𝑋+𝛽2𝑋2+𝜀
+###iii. 𝑌=𝛽0+𝛽1𝑋+𝛽2𝑋2+𝛽3𝑋3+𝜀
+###iv. 𝑌=𝛽0+𝛽1𝑋+𝛽2𝑋2+𝛽3𝑋3+𝛽4𝑋4+𝜀.
+###Note you may find it helpful to use the data.frame() function to create a single data set containing both 𝑋 and 𝑌.
+```{r}
+library(boot)
+set.seed(1)
+x = rnorm(100)
+y = x-2*x^2 + rnorm(100)
+df <- data.frame(x, y)
+
+fit1 <- glm(y ~ x,)
+cv.glm(df, fit1)$delta
+
+fit2 <- glm (y ~ poly(x, 2))
+cv.glm(df, fit2)$delta
+
+fit3 <- glm (y ~ poly(x, 3))
+cv.glm(df, fit3)$delta
+
+fit4 <- glm (y ~ poly(x, 4))
+cv.glm(df, fit4)$delta
+```
+
+###(d) Repeat (c) using another random seed, and report your results. Are your results the same as what you got in (c)? Why?
+```{r}
+set.seed(2)
+x = rnorm(100)
+y = x-2*x^2 + rnorm(100)
+df <- data.frame(x, y)
+fit1 <- glm(y ~ x)
+
+cv.glm(df, fit1)$delta
+
+fit2 <- glm(y ~ poly(x, 2))
+cv.glm(df, fit2)$delta
+
+fit3 <- glm(y ~ poly(x, 3))
+cv.glm(df, fit3)$delta
+
+fit4 <- glm(y ~ poly(x, 4))
+cv.glm(df, fit4)$delta
+
+###Results were not exactly the same, as the seeds were different, so LOOCV left out a different set. This is why you can see some differences in the errors rates between the two runs of LOOCV errors using the different models (fit1, fit2, fit3 and fit4).
+```
+
+###(e) Which of the models in (c) had the smallest LOOCV error? Is this what you expected? Explain your answer.
+```{r}
+###The 2nd model "fit2" using the least square formula glm(y ~ poly(x, 2)) had the smallest LOOCV error. This is because it is the one which resembles the true relationship the most.
+```
+
+###(f) Comment on the statistical significance of the coefficient estimates that results from fitting each of the models in (c) using least squares. Do these results agree with the conclusions drawn based on the cross-validation results?
+```{r}
+summary(fit4)
+###The p values suggests that "fit1" and "fit2" would both produce statistically significant predictors at 0% (indicated by ***). This is in agreement with the quadratic model and closely followed by the linear model.
+```
+
+#References & bibliography:
+
+##Gareth, J., 2017. An introduction to Statistical learning. 8th ed. New York: Springer.
+
+##Han, T. 2017. Big Data Analytics using R. [Lectures to MSc Data Science]. Birkbeck college, University of London, Oct 17 - Nov 17.
+
+##N/A. (2017). Cross-validation. Available: https://en.wikipedia.org/wiki/Cross-validation_(statistics). Last accessed 31st Oct 2017
+
+##N/A. (2017). matrix. Available: http://www.r-tutor.com/r-introduction/matrix. Last accessed 3rd Nov 2017.
+
+##Gareth, J. et al. (2017). chapter 4 lab. Available: http://www-bcf.usc.edu/~gareth/ISL/Chapter%204%20Lab.txt. Last accessed 10th Nov 2017.
+
+##Gareth, J. et al. (2017). chapter 4 lab. Available: http://www-bcf.usc.edu/~gareth/ISL/Chapter%205%20Lab.txt. Last accessed 10th Nov 2017
+
+##N/A. (2017). ISLR. Available: https://rpubs.com/. Last accessed 17th Nov 2017.
+
+##Venturini, S. (2016). Cross-Validation for predictive analytics using R. Available https://www.r-bloggers.com/cross-validation-for-predictive-analytics-using-r/. Last accessed 18th Nov 2017
+
+#End of document
